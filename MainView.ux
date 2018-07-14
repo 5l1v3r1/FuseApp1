@@ -1,0 +1,24 @@
+<App>
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+			var currentPage = Observable("page2");
+			function clickHandler() {
+				let nPage = Number(currentPage.value.substring(currentPage.value.length - 1)) + 1;
+				nPage %= 3;
+				currentPage.value = "page" + nPage;
+				console.log("clicked " + currentPage.value);
+			}
+			module.exports = {
+				clickHandler: clickHandler,
+				currentPage: currentPage
+			};
+	</JavaScript>
+
+<Circle Color="#F02828" ux:Name="circle1" Width="100" Height="100" Alignment="Center" Clicked="{clickHandler}" /> 
+	<PageControl Active="{currentPage}">
+		<Panel ux:Name="page0" Color="Green" />
+		<Panel ux:Name="page1" Color="Black" />
+		<Panel ux:Name="page2" Color="Blue" />
+	</PageControl>
+</App>
